@@ -1,0 +1,76 @@
+.left-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background : linear-gradient(rgba(8,8,8,0.603),rgba(252, 142, 142, 0.603)),url("src//assets//images//tweetApp-img.png");
+    background-repeat: no-repeat;
+    background-position: center;    
+    border-radius: 0 10px 10px 0;
+    color:#fff;
+}
+.left-panel h2{
+    text-shadow: 3px 4px #212529;
+    font-size: 35px;
+}
+.left-panel h3{    
+    font-size: 18px;
+    font-weight: 500;
+}
+.login-form{
+    display: flex;
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-style{
+  font-size: 18px;
+  height: 30px;
+  width: 50%;
+  border: solid 1px;
+  border-color: #696969;
+  border-radius: 20px;
+  padding: 5px 5px 5px 20px;
+  margin-top: 20px;
+}
+
+.login-form-title{
+    font-size: 45px;
+    font-weight: 600;    
+    color: #6C757D;
+    position: absolute;
+    top: 95px;    
+}
+
+.login-btn{
+    border: solid  2px #000;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 30%;
+    height: 40px;
+    cursor: pointer;
+}
+
+.img-style{
+    width: 80px;
+    height: 80px;
+}
+
+.sign-up-container{
+    position: absolute;
+    bottom: 50px;
+}
+
+.login-btn:hover{
+    color:#000;
+    background-color: #fff;    
+}
