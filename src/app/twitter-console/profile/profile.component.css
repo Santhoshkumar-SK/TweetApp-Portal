@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.post-container {
+    width: calc(100% - 250px);
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card {
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    width: 250px;
+    position: -webkit-sticky;
+    position: sticky;
+    height: 250px;
+}
+
+.profile-card li {
+    list-style: none;
+}

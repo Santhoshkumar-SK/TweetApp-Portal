@@ -48,6 +48,10 @@
     top: 95px;    
 }
 
+.text-danger{
+    color: #f00000;
+}
+
 .login-btn{
     border: solid  2px #000;
     background-color: #000;

@@ -8,7 +8,21 @@ import { ForgetPasswordComponent } from './authorization/forget-password/forget-
 import { IndexPageComponent } from './twitter-console/index-page/index-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { SignUpComponent } from './authorization/sign-up/sign-up.component';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthInterceptor } from './authorization/auth.interceptor';
+import { TweetService } from './services/tweet.service';
+import { SideNavComponent } from './twitter-console/side-nav/side-nav.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { HomePageComponent } from './twitter-console/home-page/home-page.component';
+import { SearchComponent } from './twitter-console/search/search.component';
+import { ProfileComponent } from './twitter-console/profile/profile.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { TweetsComponent } from './twitter-console/tweets/tweets.component';
 
 @NgModule({
   declarations: [
@@ -16,15 +30,32 @@ import { SignUpComponent } from './authorization/sign-up/sign-up.component';
     LoginComponent,
     ForgetPasswordComponent,
     IndexPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    SideNavComponent,
+    HomePageComponent,
+    SearchComponent,
+    ProfileComponent,
+    TweetsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({timeOut:6000}),
+    MatSidenavModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [TweetService, {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

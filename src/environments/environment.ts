@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serverUrl : "http://localhost:44607/api/v1.0/tweets",
+  tokenKeyName : "425d9d6e-8d40-48d3-8f96-1617ac80acb2"
 };
 
 /*

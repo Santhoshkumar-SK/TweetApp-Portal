@@ -1,37 +1,51 @@
 <mat-grid-list cols="2" rowHeight="100%">
     <mat-grid-tile >
-        <div class="login-form">
+        <form class="login-form" [formGroup]="signupForm" (ngSubmit)="signupinApp()" >
             <span class="login-form-title">Join us today</span>
             <div class="input-container">
                 <label>First Name</label>
-                <input class="input-style" type="text" placeholder="First name">
+                <input class="input-style" type="text" placeholder="First name" formControlName="firstname">
+                <span class="text-danger" *ngIf="signupForm.get('firstname').invalid && signupForm.get('firstname').touched">Firstname is required</span>
             </div>
             <div class="input-container">
                 <label>Last Name</label>
-                <input class="input-style" type="text" placeholder="Last name">                
+                <input class="input-style" type="text" placeholder="Last name" formControlName="lastname">
+                <span class="text-danger" *ngIf="signupForm.get('lastname').invalid && signupForm.get('lastname').touched">Lastname is required</span>
             </div>
             <div class="input-container">
                 <label>Email</label>
-                <input class="input-style" type="text" placeholder="Email">                
+                <input class="input-style" type="text" placeholder="Email" formControlName="email">
+                <div *ngIf="signupForm.get('email').touched && signupForm.get('email').invalid" class="error-container">
+                    <span class="text-danger">Email is required</span>
+                    <span class="text-danger" *ngIf="signupForm.get('email').invalid && signupForm.get('email').errors?.['email']">Enter valid email</span>
+                </div>
             </div>
             <div class="input-container">
                 <label>Contact Number</label>
-                <input class="input-style" type="text" placeholder="Contact number">                
+                <input class="input-style" type="text" placeholder="Contact number" formControlName="contactNumber">
+                <div *ngIf="signupForm.get('contactNumber').invalid && signupForm.get('contactNumber').touched" class="error-container">
+                    <span class="text-danger">Contact Number is required</span>
+                    <span class="text-danger" *ngIf="signupForm.get('contactNumber').errors?.['pattern']">Enter vaild contact number</span>
+                </div>
             </div>
             <div class="input-container">
                 <label>Username/Login ID</label>
-                <input class="input-style" type="text" placeholder="Username">                
+                <input class="input-style" type="text" placeholder="Username" formControlName="loginId">
+                <span class="text-danger" *ngIf="signupForm.get('loginId').invalid && signupForm.get('loginId').touched">Username is required</span>
             </div>
             <div class="input-container">
                 <label>Password</label>
-                <input class="input-style" type="password" placeholder="Password">                
+                <input class="input-style" type="password" placeholder="Password" formControlName="password">
+                <span class="text-danger" *ngIf="signupForm.get('password').invalid && signupForm.get('password').touched">Password is required</span>
             </div>
             <div class="input-container">
-                <label>Confirm</label>
-                <input class="input-style" type="password" placeholder="Confirm password">                
+                <label>Confirm password</label>
+                <input class="input-style" type="password" placeholder="Confirm password" formControlName="confirmpassword" (focusout)="validatePassword()"> 
+                <span class="text-danger" *ngIf="signupForm.get('confirmpassword').invalid && signupForm.get('confirmpassword').touched">Confirmpassword is required</span>
+                <span class="text-danger" *ngIf="!isPasswordValid">Password and Confirmpassword must be same</span>
             </div>
-            <button class="login-btn">Sign up</button>            
-        </div>
+            <button class="login-btn" type="submit" [disabled]="signupForm.invalid || !isPasswordValid">Sign up</button>            
+        </form>
     </mat-grid-tile>
     <mat-grid-tile>        
         <div class="left-panel"> 

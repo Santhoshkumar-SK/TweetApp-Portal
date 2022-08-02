@@ -1,20 +1,22 @@
 <mat-grid-list cols="2" rowHeight="100%">
-    <mat-grid-tile >
-        <div class="left-panel"> 
+    <mat-grid-tile>
+        <div class="left-panel">
             <h2>Get Things Happening now</h2>
             <h3>Join Tweet App today</h3>
         </div>
     </mat-grid-tile>
     <mat-grid-tile>
-        <div class="login-form">
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginToApp()">
             <span class="login-form-title">Sign in to Tweet App</span>
             <img src="/assets/images/tweetApp-img.png" alt="tweetapp" class="img-style">
-            <input class="input-style" type="text" placeholder="Username">
-            <input class="input-style" type="password" placeholder="Password">
+            <input class="input-style" type="text" formControlName="username" placeholder="Username">
+            <span class="text-danger" *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">Username is required</span>
+            <input class="input-style" type="password" formControlName="password" placeholder="Password">
+            <span class="text-danger" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">Password is required</span>
             <button class="login-btn">Sign in</button>
             <div class="sign-up-container">
                 <span>Don't have an account? <a routerLink="/signup">Sign up</a></span>
             </div>
-        </div>
+        </form>
     </mat-grid-tile>
 </mat-grid-list>

@@ -19,7 +19,9 @@
     font-size: 18px;
     font-weight: 500;
 }
-
+.text-danger{
+    color: #f00000;
+}
 .login-form{
     display: flex;
     height: 100%;
@@ -37,6 +39,11 @@
   border-color: #696969;
   border-radius: 20px;
   padding: 5px 5px 5px 20px;
+}
+
+.error-container{
+    display: flex;
+    flex-direction: column;
 }
 
 .input-container{
@@ -77,4 +84,12 @@
 .login-btn:hover{
     color:#000;
     background-color: #fff;    
+}
+
+.login-btn:disabled,
+.login-btn[disabled]{
+  border: 1px solid #000;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
 }

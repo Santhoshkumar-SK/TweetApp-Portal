@@ -1,0 +1,50 @@
+.tweet-card{
+    margin: 20px;
+    padding: 20px; 
+    width: calc(100% - 200px);
+    z-index: 100;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    border-radius: 10px;
+}
+
+.avatar{
+    position: absolute;
+    margin-left: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 20%;
+}
+
+.tweet-card-title{
+    display: flex;
+    flex-direction: row;
+    margin-left: 75px;
+    padding: 10px 10px 10px 0;
+}
+.tweet-card-user{
+    font-size: 15px;
+    font-weight: 600;
+    padding-left: 3px;
+}
+.spacer{
+    flex: 1 1 auto;
+}
+.insight-msg{
+    margin-left: 75px;
+    font-size: 15px;
+    font-weight: 500;
+    color: grey;
+}
+.tweet-card-time{    
+    font-size: 14px;
+    font-weight: 400;
+    color: grey;
+}
+.tweet-content{
+    padding-top: 15px;
+}
+.tweet-footer{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}

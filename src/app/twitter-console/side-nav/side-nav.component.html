@@ -1,0 +1,17 @@
+<mat-drawer-container class="drawer-container">
+    <mat-drawer mode="side" opened class="drawer">
+        <ul class="router-link-style">
+            <a *ngFor="let navdetails of routingdetails" [routerLink]="[navdetails.routerLink]" routerLinkActive="active" >
+                <mat-icon>{{navdetails.icon}}</mat-icon>
+                <span>{{navdetails.label}}</span>
+            </a>
+        </ul>
+        <a class="signout" (click)="logoutFromApp()">
+            <mat-icon>logout</mat-icon>
+            Sign out
+        </a>
+    </mat-drawer>
+    <mat-drawer-content class="drawer-content">
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

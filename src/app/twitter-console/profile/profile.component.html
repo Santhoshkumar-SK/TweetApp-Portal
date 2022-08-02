@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="post-container">
+        <app-tweets></app-tweets>
+    </div>
+    <mat-card class="profile-card">
+        <mat-card-title class="title">
+            <img src="/assets/images/tweetapp-profile.png" class="profile-avatar">
+        </mat-card-title>
+        <mat-card-subtitle class="title">{{userinfo.loginId}}</mat-card-subtitle>
+        <mat-card-content>
+            <ul>
+                <li>First Name : {{userinfo.firstname}}</li>
+                <li>Last Name : {{userinfo.lastname}}</li>
+                <li>Email : {{userinfo.email}}</li>
+                <li>Contact : {{userinfo.contactNumber}}</li>
+            </ul>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button>POST NEW TWEET</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
