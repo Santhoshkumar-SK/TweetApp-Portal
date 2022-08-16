@@ -1,6 +1,6 @@
 <div class="container">
     <div class="post-container">
-        <app-tweets></app-tweets>
+        <app-tweets [tweetType]="tweetType"></app-tweets>
     </div>
     <mat-card class="profile-card">
         <mat-card-title class="title">
@@ -16,7 +16,7 @@
             </ul>
         </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-button>POST NEW TWEET</button>
+          <button mat-button (click)="manageDialogBox()">POST NEW TWEET</button>
         </mat-card-actions>
     </mat-card>
 </div>

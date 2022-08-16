@@ -1,0 +1,24 @@
+<mat-dialog-content>
+    <form class="login-form" [formGroup]="posttweetForm">
+        <span class="login-form-title">{{formtitle}}</span>
+        <div class="input-container">
+            <label>Insight Message</label>
+            <input class="input-style" type="text" placeholder="Insight message" formControlName="insightmessage" style="height: 30px">
+            <span class="text-danger"
+                *ngIf="posttweetForm.get('insightmessage').invalid && posttweetForm.get('insightmessage').touched">Insightmessage is
+                required</span>
+        </div>
+        <div class="input-container">
+            <label>Message</label>
+            <textarea class="input-style" type="text" placeholder="Message" formControlName="tweetMessage" rows="4" cols="50"></textarea>
+            <div *ngIf="posttweetForm.get('tweetMessage').invalid && posttweetForm.get('tweetMessage').touched" class="error-container">
+                    <span class="text-danger">Message is required</span>
+                    <span class="text-danger" *ngIf="posttweetForm.get('tweetMessage').errors?.['maxlength']">Tweet message should not go beyond 144 characters</span>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="tweet" cdkFocusInitial [disabled]="posttweetForm.invalid" (click)="posttweet()">Post</button>
+  </mat-dialog-actions>

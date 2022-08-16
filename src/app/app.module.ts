@@ -23,6 +23,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { TweetsComponent } from './twitter-console/tweets/tweets.component';
+import { ReplyTweetsComponent } from './twitter-console/reply-tweets/reply-tweets.component';
+import { PostTweetComponent } from './twitter-console/post-tweet/post-tweet.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteTweetComponent } from './twitter-console/delete-tweet/delete-tweet.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import { TweetsComponent } from './twitter-console/tweets/tweets.component';
     HomePageComponent,
     SearchComponent,
     ProfileComponent,
-    TweetsComponent
+    TweetsComponent,
+    ReplyTweetsComponent,
+    PostTweetComponent,
+    DeleteTweetComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,8 @@ import { TweetsComponent } from './twitter-console/tweets/tweets.component';
     MatSidenavModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [TweetService, {
     provide : HTTP_INTERCEPTORS,

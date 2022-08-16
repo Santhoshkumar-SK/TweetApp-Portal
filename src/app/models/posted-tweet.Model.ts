@@ -5,6 +5,10 @@ export class PostedTweet {
       timeofPost: string;
       tweetMessage: string;
       numberOfLikes: number;
+      likedUsers : string[];
       isReplyFlag: boolean;
       repliedTweetIds: string[];
+      isliked ?: boolean;
+      isViewReplies ?: boolean = false;
+      btnDisplayValue ?:string = "View replies";
 }

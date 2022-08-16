@@ -1,0 +1,17 @@
+<div class="tweet-card" *ngFor="let tweet of replies">
+    <img src="/assets/images/tweetapp-profile.png" alt="profile-img" class="avatar">
+    <div class="tweet-card-title">
+        <span class="tweet-card-user">{{tweet.loginId}}</span>
+        <span class="spacer"></span>
+        <span class="tweet-card-time">{{tweet.timeofPost}}</span>
+    </div>
+    <span class="insight-msg">{{tweet.insightMessage}}</span>
+    <div class="tweet-content">
+        <p>
+            {{tweet.tweetMessage}}
+        </p>
+    </div>
+</div>
+<div *ngIf="this.replies.length == 0">
+    <span>No replies found</span>
+</div>

@@ -3,7 +3,7 @@
     <div class="tweet-card-title">
         <span class="tweet-card-user">{{tweet.loginId}}</span>
         <span class="spacer"></span>
-        <span class="tweet-card-time">{{tweet.timeofPost}}</span>
+        <span class="tweet-card-time">{{tweet.timeofPost  | date:'yyyy-MM-dd h:mm:ss'}}</span>
     </div>
     <span class="insight-msg">{{tweet.insightMessage}}</span>
     <div class="tweet-content">
@@ -12,7 +12,16 @@
         </p>
     </div>
     <div class="tweet-footer">
-        <button mat-button>View Replies</button>
-        <span>{{tweet.numberOfLikes}} likes</span>
+        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Delete')" *ngIf="tweetType == 'user'"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Edit')" *ngIf="tweetType == 'user'"><mat-icon>edit</mat-icon></button>
+        <button mat-button (click)="toOpenReplies(tweet)">{{tweet.btnDisplayValue}}</button>    
+        <span class="likes">
+            <mat-icon class="like-btn" *ngIf="!tweet.isliked" (click)="liketweet(tweet)">favorite_border</mat-icon>
+            <mat-icon class="like-btn" *ngIf="tweet.isliked">favorite</mat-icon>
+            {{tweet.numberOfLikes}} likes</span>
+    </div>
+    <app-reply-tweets [orgintweet]="tweet.tweetId" *ngIf="tweet.isViewReplies"></app-reply-tweets>
+    <div class="tweet-footer">
+        <button class="likes" mat-button *ngIf="tweet.isViewReplies" (click)="manageDialogBox(tweet,'Reply')">Post reply</button>
     </div>
 </div>

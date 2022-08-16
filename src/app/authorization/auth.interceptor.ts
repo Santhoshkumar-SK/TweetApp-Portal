@@ -22,24 +22,35 @@ export class AuthInterceptor implements HttpInterceptor{
             const clonedReq = req.clone({
                 headers : req.headers.set('Authorization', 'Bearer '+localStorage.getItem(environment.tokenKeyName))
             });
-
-            return next.handle(clonedReq).pipe(
-                tap(
-                    succ => {},
-                    error => {
-                        if(error.status == 401){
-                            localStorage.removeItem(environment.tokenKeyName);
-                            this.toastr.info("Login again","Session expired");
-                            this.route.navigate(['']);
-                        }
+            return next.handle(clonedReq).pipe(tap({
+                next : () => {},
+                error : (err) => {
+                    console.log(err);
+                    if(err.status == 0 || err.status == 401){
+                        localStorage.removeItem(environment.tokenKeyName);
+                        this.toastr.info("Login again","Session expired");
+                        this.route.navigate(['']);
                     }
-                ),
-                finalize(
-                    ()=>{
-                        //this.loader.isLoading.next(false);
-                    }
-                )
-            );
+                },
+                finalize : () => {}
+            }));
+            // return next.handle(clonedReq).pipe(
+            //     tap(
+            //         succ => {},
+            //         error => {
+            //             if(error.status == 401){
+            //                 localStorage.removeItem(environment.tokenKeyName);
+            //                 this.toastr.info("Login again","Session expired");
+            //                 this.route.navigate(['']);
+            //             }
+            //         }
+            //     ),
+            //     finalize(
+            //         ()=>{
+            //             //this.loader.isLoading.next(false);
+            //         }
+            //     )
+            // );
         }
         else{
             //this.loader.isLoading.next(false);
