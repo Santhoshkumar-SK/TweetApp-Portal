@@ -12,8 +12,8 @@
         </p>
     </div>
     <div class="tweet-footer">
-        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Delete')" *ngIf="tweetType == 'user'"><mat-icon>delete</mat-icon></button>
-        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Edit')" *ngIf="tweetType == 'user'"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Delete')" *ngIf="tweetType == 'loggeduser'"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button class="like-btn" (click)="manageDialogBox(tweet,'Edit')" *ngIf="tweetType == 'loggeduser'"><mat-icon>edit</mat-icon></button>
         <button mat-button (click)="toOpenReplies(tweet)">{{tweet.btnDisplayValue}}</button>    
         <span class="likes">
             <mat-icon class="like-btn" *ngIf="!tweet.isliked" (click)="liketweet(tweet)">favorite_border</mat-icon>

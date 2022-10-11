@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BaseResponse } from 'src/app/models/base-response.model';
@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   loginResponse: BaseResponse<LoginResponse>;
   constructor(private loginService: LoginService, private toastr: ToastrService, private route: Router) { }
 
@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
       this.route.navigate(['/tweets/home']);
     }
 
-    this.loginForm = new FormGroup({
-      "username": new FormControl(null, Validators.required),
-      "password": new FormControl(null, Validators.required)
+    this.loginForm = new UntypedFormGroup({
+      "username": new UntypedFormControl(null, Validators.required),
+      "password": new UntypedFormControl(null, Validators.required)
     });
   }
 

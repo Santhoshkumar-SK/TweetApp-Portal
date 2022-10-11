@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit,Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { BaseResponse } from 'src/app/models/base-response.model';
 import { PostedTweet } from 'src/app/models/posted-tweet.Model';
 import { TweetResponse } from 'src/app/models/tweet-response.Model';
@@ -20,7 +20,7 @@ export interface PosttweetDialogData {
 })
 export class PostTweetComponent implements OnInit {
 
-  posttweetForm : FormGroup;
+  posttweetForm : UntypedFormGroup;
   formtitle : string;
   tweet : PostedTweet = new PostedTweet();
   tweetResponse : BaseResponse<TweetResponse>;
@@ -30,9 +30,9 @@ export class PostTweetComponent implements OnInit {
   
   ngOnInit(): void {
     this.formtitle = this.inputdata.dialogTitle;
-    this.posttweetForm = new FormGroup({
-      "insightmessage" : new FormControl(this.inputdata.insightMessage,Validators.required),
-      "tweetMessage" : new FormControl(this.inputdata.tweetMessage,[Validators.required,Validators.maxLength(144)])      
+    this.posttweetForm = new UntypedFormGroup({
+      "insightmessage" : new UntypedFormControl(this.inputdata.insightMessage,Validators.required),
+      "tweetMessage" : new UntypedFormControl(this.inputdata.tweetMessage,[Validators.required,Validators.maxLength(144)])      
     });
   }
 

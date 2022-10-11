@@ -1,1 +1,20 @@
-<p>search works!</p>
+<div class="container">
+    <mat-form-field class="example-full-width">
+        <mat-label>Search</mat-label>
+        <input type="email" matInput placeholder="Search" #id>
+        <mat-icon class="search-btn" matSuffix (click)="searchUser(id.value)">search</mat-icon>        
+      </mat-form-field>
+</div>
+<div *ngFor="let user of usersdetails">
+    <div class="search-container" *ngIf="showSearch">
+        <mat-card class="search-card" (click)="selectUser(user)">
+            <mat-card-content>
+                {{user.loginId}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<div *ngIf="showTweets">
+    <app-tweets [tweetType]="tweetType"></app-tweets>
+</div>

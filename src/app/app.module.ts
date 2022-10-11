@@ -27,6 +27,7 @@ import { ReplyTweetsComponent } from './twitter-console/reply-tweets/reply-tweet
 import { PostTweetComponent } from './twitter-console/post-tweet/post-tweet.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteTweetComponent } from './twitter-console/delete-tweet/delete-tweet.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DeleteTweetComponent } from './twitter-console/delete-tweet/delete-twee
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [TweetService, {
     provide : HTTP_INTERCEPTORS,

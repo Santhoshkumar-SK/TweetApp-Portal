@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin: 0px 0 30px 0;
+    padding: 15px;   
+}
+
+.input-style{
+    height: 15px;
+}
+
+.search-container{
+    padding: 30px;
+}
+
+.search-btn,.search-card{
+    cursor: pointer;
+}

@@ -26,12 +26,16 @@ export class TweetsComponent implements OnInit {
   constructor(private tweetservice: TweetService, private toastr: ToastrService, private loginService: LoginService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.loggedinUser = this.loginService.getLoggedUser();
-    this.tweetType == "user" ? this.getAlltweetsofUser() : this.getAlltweets();
+    this.loggedinUser = this.loginService.getLoggedUser();    
+    this.tweetType.includes("user") || this.tweetType == "loggeduser" ? this.getAlltweetsofUser() : this.getAlltweets();
   }
 
   getAlltweetsofUser() {
-    this.tweetservice.getTweetsofUser(this.loggedinUser).subscribe({
+    let username = null;
+    if(this.tweetType != 'loggeduser'){
+      username = this.tweetType.split('-')[1];
+    }
+    this.tweetservice.getTweetsofUser(username == null ? this.loggedinUser : username).subscribe({
       next: (result) => {
         var response = result as BaseResponse<PostedTweet[]>;
         if (response.isSuccess) {
@@ -213,8 +217,9 @@ export class TweetsComponent implements OnInit {
         this.toastr.error(this.tweetResponse.errorInfo, `Reply Tweet HTTP CODE - ${this.tweetResponse.httpStatusCode}`);
       },
       complete: () => {
+        var url = this.tweetType.includes("user") || this.tweetType == "loggeduser" ? "/tweets/profile" : '/tweets/home'
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/tweets/profile']);
+          this.router.navigate([url]);
         });
       }
     })

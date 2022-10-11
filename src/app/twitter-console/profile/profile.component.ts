@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ForgetPasswordComponent } from 'src/app/authorization/forget-password/forget-password.component';
 import { BaseResponse } from 'src/app/models/base-response.model';
+import { LoginResponse } from 'src/app/models/login-response.model';
 import { PostedTweet } from 'src/app/models/posted-tweet.Model';
 import { TweetResponse } from 'src/app/models/tweet-response.Model';
 import { UserInfo } from 'src/app/models/user-info.Model';
 import { LoginService } from 'src/app/services/login.service';
 import { TweetService } from 'src/app/services/tweet.service';
+import { environment } from 'src/environments/environment';
 import { PostTweetComponent } from '../post-tweet/post-tweet.component';
 
 @Component({
@@ -20,8 +23,9 @@ export class ProfileComponent implements OnInit {
   userinfoResponse: BaseResponse<UserInfo[]>;
   userinfo: UserInfo;
   loggedinUser: string;
-  tweetType: string = "user";
+  tweetType: string = "loggeduser";
   tweetResponse: BaseResponse<TweetResponse>;
+  loginResponse : BaseResponse<LoginResponse>;
   constructor(private tweetservice: TweetService, private toastr: ToastrService, private loginService: LoginService, private dialog: MatDialog,private router : Router) { }
 
   ngOnInit(): void {
@@ -80,6 +84,39 @@ export class ProfileComponent implements OnInit {
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/tweets/profile']);
       }); 
+      }
+    })
+  }
+
+  managePasswordDialog(){
+    const dialogRef = this.dialog.open(ForgetPasswordComponent);
+    dialogRef.afterClosed().subscribe({
+      next : (result) => {        
+        console.log(result);
+        if (result != undefined && result != null) {          
+          this.changepassword(result);
+        }
+      }
+    });
+  }
+
+  changepassword(password : string){
+    this.tweetservice.forgetPassword(this.loggedinUser,password).subscribe({
+      next : (result) => {
+        this.loginResponse = result as BaseResponse<LoginResponse>;
+        if(this.loginResponse.isSuccess){
+          this.toastr.success(this.loginResponse.result.loginMessage, "Forget Password");
+        }else {
+          this.toastr.error(this.loginResponse.errorInfo, `Forget Password HTTP CODE - ${this.loginResponse.httpStatusCode}`);
+        }
+      },
+      error:(err)=>{
+        this.loginResponse = err as BaseResponse<LoginResponse>;
+        this.toastr.error(this.loginResponse.errorInfo, `Forget Password HTTP CODE - ${this.loginResponse.httpStatusCode}`);
+      },
+      complete: ()=>{
+        localStorage.removeItem(environment.tokenKeyName);
+        this.router.navigate(['']);
       }
     })
   }

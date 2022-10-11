@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private httpClient : HttpClient) { }
   
   logintoApp(username : string,password : string){
-    let urltosend = environment.serverUrl + '/login';
+    let urltosend = environment.authapiUrl + '/login';
     const body ={
       "loginId" : username,
       "password" : password
@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   registerinApp(userinfo : UserInfo){
-    let urltosend = environment.serverUrl + '/register';
+    let urltosend = environment.userapiUrl + '/register';
     console.log(userinfo);
     return this.httpClient.post(urltosend,userinfo);
   }

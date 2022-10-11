@@ -38,7 +38,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "700kb",
                   "maximumError": "1mb"
                 },
                 {
@@ -104,6 +104,5 @@
         }
       }
     }
-  },
-  "defaultProject": "TweetApp-Portal"
+  }
 }

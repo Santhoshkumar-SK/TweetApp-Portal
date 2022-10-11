@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BaseResponse } from 'src/app/models/base-response.model';
@@ -15,20 +15,20 @@ import { LoginService } from 'src/app/services/login.service';
 export class SignUpComponent implements OnInit {
 
   constructor(private loginService : LoginService,private toastr : ToastrService,private route : Router) { }
-  signupForm : FormGroup;
+  signupForm : UntypedFormGroup;
   userInfo : UserInfo;
   signupResponse : BaseResponse<UserInfoResponse>;
   isPasswordValid : boolean = true;
 
   ngOnInit(): void {
-    this.signupForm = new FormGroup({
-      "firstname" : new FormControl(null,Validators.required),
-      "lastname" : new FormControl(null,Validators.required),
-      "email" : new FormControl(null,[Validators.required,Validators.email]),
-      "contactNumber" : new FormControl(null,[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]),
-      "loginId" : new FormControl(null,Validators.required),
-      "password" : new FormControl(null,Validators.required),
-      "confirmpassword" : new FormControl(null,Validators.required)
+    this.signupForm = new UntypedFormGroup({
+      "firstname" : new UntypedFormControl(null,Validators.required),
+      "lastname" : new UntypedFormControl(null,Validators.required),
+      "email" : new UntypedFormControl(null,[Validators.required,Validators.email]),
+      "contactNumber" : new UntypedFormControl(null,[Validators.required,Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]),
+      "loginId" : new UntypedFormControl(null,Validators.required),
+      "password" : new UntypedFormControl(null,Validators.required),
+      "confirmpassword" : new UntypedFormControl(null,Validators.required)
     });
   }
 
